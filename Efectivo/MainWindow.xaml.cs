@@ -31,14 +31,14 @@ namespace Efectivo
 
         private void BtnAgregar_Click(object sender, RoutedEventArgs e)
         {
-            Dinero ingresar = new Dinero();
+            Dinero ingresar=new Dinero();
             int Validar;
             if (CheckB.IsChecked==true)
             {
-                Validar = (int)Dinero.Billetes.Billete;
+                Validar = (int)Dinero.TipoEfectivo.Billete;
             }else if(CheckM.IsChecked==true)
             {
-                Validar = (int)Dinero.Billetes.Moneda;
+                Validar = (int)Dinero.TipoEfectivo.Moneda;
             }else
             {
                 Validar = 0;
@@ -48,7 +48,8 @@ namespace Efectivo
             {
                 try
                 {
-                    ingresar.AgregarBilletes(TxtNombre.Text, new Billete(Convert.ToInt32(TxtValor.Text)));
+                   
+                    ingresar.AgregarBilletes(Dinero.TipoEfectivo.Billete,new Billete(TxtNombre.Text,Convert.ToInt32(TxtValor.Text)));
                     MessageBox.Show("Se agrego exitosamente", "Ingreso", MessageBoxButton.OK);
                 }
                 catch (Exception ex)
@@ -61,7 +62,7 @@ namespace Efectivo
             {
                 try
                 {
-                    ingresar.AgregarMonedas(TxtNombre.Text, new Moneda(Convert.ToInt32(TxtValor.Text)));
+                    ingresar.AgregarMonedas(Dinero.TipoEfectivo.Billete,new Moneda(TxtNombre.Text, Convert.ToInt32(TxtValor.Text)) );
                     MessageBox.Show("Se agrego exitosamente", "Ingreso", MessageBoxButton.OK);
                 }
                 catch (Exception ex)

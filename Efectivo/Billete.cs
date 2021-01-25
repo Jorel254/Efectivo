@@ -8,16 +8,16 @@ namespace Efectivo
 {
     class Billete : Dinero
     {
-
-       
+        public string Nombre { get; set; }
         public Billete()
         {
 
         }
-        public Billete( int valor) : base(valor)
+        public Billete( string Nombre,int Valor) 
         {
-
+            this.Nombre = Nombre;
+            this.Valor = Valor;
         }
-        
+       
     }
 }

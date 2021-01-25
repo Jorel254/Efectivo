@@ -8,25 +8,28 @@ namespace Efectivo
 {
     class Dinero
     {
-        private int Valor { get; set; }
-        public enum Billetes { Moneda=1, Billete=2 }
+        public enum TipoEfectivo { Moneda = 1, Billete = 2 }
+        public int Valor { get; set; }
+
+        public TipoEfectivo Tipo { get; set; }
         Cartera e = new Cartera();
         public Dinero()
         {
 
         }
-        public Dinero(int valor)
+        public Dinero(int Valor, TipoEfectivo Tipo)
         {
-            this.Valor = valor;
-
+          
+            this.Valor = Valor;
+            this.Tipo = Tipo;
         }
-        public void AgregarBilletes(string nombre, Billete b)
+        public  void AgregarBilletes(TipoEfectivo tipo, Billete b)
         {
-            e.Monedero.Add(nombre, b);
+            e.Monedero.Add(tipo,b);
         }
-        public void AgregarMonedas(string nombre, Moneda m)
+        public  void AgregarMonedas( TipoEfectivo tipo, Moneda m)
         {
-            e.Monedero.Add(nombre, m);
+            e.Monedero.Add(tipo,m);
         }
     }
 }

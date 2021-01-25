@@ -8,6 +8,9 @@ namespace Efectivo
 {
     class Cartera
     {
-        public Dictionary<string, Dinero> Monedero = new Dictionary<string, Dinero>();
+        
+
+        public Dictionary< Dinero.TipoEfectivo, Dinero> Monedero = new Dictionary<Dinero.TipoEfectivo, Dinero>();
+ 
     }
 }
