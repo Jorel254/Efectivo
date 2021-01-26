@@ -8,14 +8,11 @@ namespace Efectivo
 {
     class Moneda : Dinero
     {
-        public string Nombre { get; set; }
-        public Moneda()
-        {
 
-        }
-        public Moneda(string Nombre, int Valor, TipoEfectivo Tipo) : base(Valor, Tipo)
+
+        public Moneda( string Nombre,int Valor) : base(Nombre,Valor, TipoEfectivo.Billete)
         {
-            this.Nombre = Nombre;
+           
         }
         
     }
