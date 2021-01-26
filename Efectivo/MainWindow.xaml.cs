@@ -31,7 +31,7 @@ namespace Efectivo
 
         private void BtnAgregar_Click(object sender, RoutedEventArgs e)
         {
-            Dinero ingresar=new Dinero();
+          
             int Validar;
             if (CheckB.IsChecked==true)
             {
@@ -49,7 +49,7 @@ namespace Efectivo
                 try
                 {
                    
-                    ingresar.AgregarBilletes(Dinero.TipoEfectivo.Billete,new Billete(TxtNombre.Text,Convert.ToInt32(TxtValor.Text)));
+                    
                     MessageBox.Show("Se agrego exitosamente", "Ingreso", MessageBoxButton.OK);
                 }
                 catch (Exception ex)
@@ -62,7 +62,7 @@ namespace Efectivo
             {
                 try
                 {
-                    ingresar.AgregarMonedas(Dinero.TipoEfectivo.Billete,new Moneda(TxtNombre.Text, Convert.ToInt32(TxtValor.Text)) );
+                    
                     MessageBox.Show("Se agrego exitosamente", "Ingreso", MessageBoxButton.OK);
                 }
                 catch (Exception ex)

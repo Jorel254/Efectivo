@@ -13,10 +13,10 @@ namespace Efectivo
         {
 
         }
-        public Billete( string Nombre,int Valor) 
+        public Billete( string Nombre,int Valor,TipoEfectivo Tipo) :base(Valor,Tipo)
         {
             this.Nombre = Nombre;
-            this.Valor = Valor;
+
         }
        
     }

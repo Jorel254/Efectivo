@@ -13,10 +13,9 @@ namespace Efectivo
         {
 
         }
-        public Moneda(string Nombre, int Valor) 
+        public Moneda(string Nombre, int Valor, TipoEfectivo Tipo) : base(Valor, Tipo)
         {
             this.Nombre = Nombre;
-            this.Valor = Valor;
         }
         
     }

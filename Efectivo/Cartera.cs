@@ -8,9 +8,17 @@ namespace Efectivo
 {
     class Cartera
     {
-        
 
-        public Dictionary< Dinero.TipoEfectivo, Dinero> Monedero = new Dictionary<Dinero.TipoEfectivo, Dinero>();
- 
+
+        List<Dinero> Monedero = new List<Dinero>();
+        public void AgregarBilletes( Billete b)
+        {
+            Monedero.Add(b);
+        }
+        public void AgregarMonedas( Moneda m)
+        {
+            Monedero.Add(m);
+        }
+
     }
 }
