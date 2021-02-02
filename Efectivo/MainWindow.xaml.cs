@@ -48,9 +48,13 @@ namespace Efectivo
             //ahora buscar
             if (Nuevalista.Items.Contains(dinero))
             {
-                dinero.Cantidad = dinero.Cantidad + 1;
-              
-            }else
+                int posicion = Nuevalista.Items.IndexOf(dinero);
+                Nuevalista.Items.Remove(dinero);
+                dinero.Cantidad += 1 ;
+                Nuevalista.Items.Insert(posicion, dinero);
+               
+            }
+            else
             {
                 Nuevalista.Items.Add(dinero);
             }
