@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Efectivo
 {
-   abstract class Dinero
+   public abstract class Dinero
     {
         public enum TipoEfectivo { Moneda = 1, Billete = 2 }
         public int Valor { get; set; }
@@ -16,7 +16,7 @@ namespace Efectivo
 
         public Dinero(string Nombre, int Valor, TipoEfectivo Tipo)
         {
-          
+            this.Nombre = Nombre;
             this.Valor = Valor;
             this.Tipo = Tipo;
         }

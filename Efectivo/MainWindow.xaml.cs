@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Linq;
 using System.Runtime.CompilerServices;
@@ -22,72 +23,31 @@ namespace Efectivo
     /// </summary>
     public partial class MainWindow : Window
     {
+       public  Cartera Billetera { get; set; }
         public MainWindow()
         {
+            Billetera = new Cartera();
+            Billetera.AgregarBilletes(new Billete("Cien", 100));
+            Billetera.AgregarBilletes(new Billete("Doscientos", 200));
+            Billetera.AgregarBilletes(new Billete("Veinte", 20));
+           
             InitializeComponent();
-
+            
         }
-       
-
-        private void BtnAgregar_Click(object sender, RoutedEventArgs e)
+        ObservableCollection<Dinero> Dineros= new ObservableCollection<Dinero>();
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="sender">Sender SIEMPRE representa el OBJETO que generó el evento</param> zy xD
+        /// <param name="e"></param>
+        private void Button_Click(object sender, RoutedEventArgs e)
         {
-          
-            int Validar;
-            if (CheckB.IsChecked==true)
-            {
-                Validar = (int)Dinero.TipoEfectivo.Billete;
-            }else if(CheckM.IsChecked==true)
-            {
-                Validar = (int)Dinero.TipoEfectivo.Moneda;
-            }else
-            {
-                Validar = 0;
-            }
+           
+            Button n = (Button)sender;
+            Dinero dinero = (Dinero)n.DataContext;
+            //ahora buscar
+            Dineros.Add(dinero);
 
-            if (Validar==2)
-            {
-                try
-                {
-                   
-                    
-                    MessageBox.Show("Se agrego exitosamente", "Ingreso", MessageBoxButton.OK);
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show(ex.Message);
-                }
-                
-                
-            }else if (Validar==1)
-            {
-                try
-                {
-                    
-                    MessageBox.Show("Se agrego exitosamente", "Ingreso", MessageBoxButton.OK);
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show(ex.Message);
-                }
-                
-            }else
-            {
-                MessageBox.Show("Necesita seleccionar si es Moneda o Billete para agregarlo", "Advertencia", MessageBoxButton.OK);
-            }
-            CheckB.IsEnabled = true;
-            CheckM.IsEnabled = true;
-            TxtNombre.Text = "";
-            TxtValor.Text = "";
-        }
-
-        private void CheckB_Checked(object sender, RoutedEventArgs e)
-        {
-            CheckM.IsChecked=false;
-        }
-
-        private void CheckM_Checked(object sender, RoutedEventArgs e)
-        {
-            CheckB.IsChecked = false;
         }
     }
 }
