@@ -27,14 +27,14 @@ namespace Efectivo
         public MainWindow()
         {
             Billetera = new Cartera();
-            Billetera.AgregarBilletes(new Billete("Cien", 100));
-            Billetera.AgregarBilletes(new Billete("Doscientos", 200));
-            Billetera.AgregarBilletes(new Billete("Veinte", 20));
+            Billetera.AgregarBilletes(new Billete("Cien", 100,1));
+            Billetera.AgregarBilletes(new Billete("Doscientos", 200,1));
+            Billetera.AgregarBilletes(new Billete("Veinte", 20,1));
            
             InitializeComponent();
             
         }
-        ObservableCollection<Dinero> Dineros= new ObservableCollection<Dinero>();
+ 
         /// <summary>
         /// 
         /// </summary>
@@ -42,11 +42,19 @@ namespace Efectivo
         /// <param name="e"></param>
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-           
+            
             Button n = (Button)sender;
             Dinero dinero = (Dinero)n.DataContext;
             //ahora buscar
-            Dineros.Add(dinero);
+            if (Nuevalista.Items.Contains(dinero))
+            {
+                dinero.Cantidad = dinero.Cantidad + 1;
+              
+            }else
+            {
+                Nuevalista.Items.Add(dinero);
+            }
+            
 
         }
     }

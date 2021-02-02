@@ -12,13 +12,14 @@ namespace Efectivo
         public int Valor { get; set; }
         public string Nombre { get; set; }
         public TipoEfectivo Tipo { get; set; }
-        
+        public int Cantidad { get; set; }
 
-        public Dinero(string Nombre, int Valor, TipoEfectivo Tipo)
+        public Dinero(string Nombre, int Valor,int Cantidad, TipoEfectivo Tipo)
         {
             this.Nombre = Nombre;
             this.Valor = Valor;
             this.Tipo = Tipo;
+            this.Cantidad = Cantidad;
         }
         
     }

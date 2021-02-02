@@ -10,7 +10,7 @@ namespace Efectivo
     {
        
 
-        public Billete(string Nombre, int Valor) : base(Nombre, Valor, TipoEfectivo.Billete)
+        public Billete(string Nombre, int Valor, int Cantidad) : base(Nombre, Valor,Cantidad, TipoEfectivo.Billete)
         {
            
         }

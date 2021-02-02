@@ -10,7 +10,7 @@ namespace Efectivo
     {
 
 
-        public Moneda( string Nombre,int Valor) : base(Nombre,Valor, TipoEfectivo.Billete)
+        public Moneda( string Nombre,int Valor,int Cantidad) : base(Nombre,Valor,Cantidad, TipoEfectivo.Billete)
         {
            
         }

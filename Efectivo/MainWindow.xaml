@@ -24,13 +24,14 @@
                     <TextBlock Margin="5" Grid.Column="1"  VerticalAlignment="Center"/>
                 </Grid>
 
-                <ListView DataContext="{Binding ElementName=Me}" ItemsSource="{Binding Dineros}" >
+                <ListView x:Name="Nuevalista" DataContext="{Binding ElementName=Me}"  >
                     <ListView.ItemTemplate>
                         <DataTemplate>
                             <StackPanel Orientation="Horizontal">
                                 <TextBlock Text="{Binding Nombre}" VerticalAlignment="Center" Margin="10,0"/>
                                 <TextBlock Text="{Binding Valor}"  VerticalAlignment="Center" Margin="10,0"/>
                                 <TextBlock Text="{Binding Tipo}"  VerticalAlignment="Center" Margin="10,0"/>
+                                <TextBlock Text="{Binding Cantidad}" VerticalAlignment="Center" Margin="10,0" />
                             </StackPanel>
                         </DataTemplate>
                     </ListView.ItemTemplate>
