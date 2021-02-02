@@ -24,6 +24,7 @@ namespace Efectivo
     public partial class MainWindow : Window
     {
        public  Cartera Billetera { get; set; }
+        int Total = 0;
         public MainWindow()
         {
             Billetera = new Cartera();
@@ -52,11 +53,14 @@ namespace Efectivo
                 Nuevalista.Items.Remove(dinero);
                 dinero.Cantidad += 1 ;
                 Nuevalista.Items.Insert(posicion, dinero);
-               
+                Total += dinero.Valor;
+                TxtTotal.Text = Total.ToString();
             }
             else
             {
                 Nuevalista.Items.Add(dinero);
+                Total += dinero.Valor;
+                TxtTotal.Text = Total.ToString();
             }
             
 

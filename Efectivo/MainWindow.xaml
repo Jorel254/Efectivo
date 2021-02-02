@@ -21,7 +21,7 @@
                         <ColumnDefinition Width="80*"/>
                     </Grid.ColumnDefinitions>
                     <Label HorizontalAlignment="Center" VerticalAlignment="Center" Content="Total" FontSize="25" FontFamily="Segoe UI Black" />
-                    <TextBlock Margin="5" Grid.Column="1"  VerticalAlignment="Center"/>
+                    <TextBlock x:Name="TxtTotal"  Margin="5" Grid.Column="1"  VerticalAlignment="Center" />
                 </Grid>
 
                 <ListView x:Name="Nuevalista" DataContext="{Binding ElementName=Me}"  >
