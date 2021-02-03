@@ -24,7 +24,7 @@
                     <TextBlock x:Name="TxtTotal"  Margin="5" Grid.Column="1"  VerticalAlignment="Center" />
                 </Grid>
 
-                <ListView x:Name="Nuevalista" DataContext="{Binding ElementName=Me}"  >
+                <ListView DataContext="{Binding ElementName=Me}" ItemsSource="{Binding dineros}" >
                     <ListView.ItemTemplate>
                         <DataTemplate>
                             <StackPanel Orientation="Horizontal">

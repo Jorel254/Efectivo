@@ -24,10 +24,12 @@ namespace Efectivo
     public partial class MainWindow : Window
     {
        public  Cartera Billetera { get; set; }
+     public ObservableCollection<Dinero> dineros { get; set; }
         int Total = 0;
         public MainWindow()
         {
             Billetera = new Cartera();
+            dineros = new ObservableCollection<Dinero>();
             Billetera.AgregarBilletes(new Billete("Cien", 100,1));
             Billetera.AgregarBilletes(new Billete("Doscientos", 200,1));
             Billetera.AgregarBilletes(new Billete("Veinte", 20,1));
@@ -35,7 +37,8 @@ namespace Efectivo
             InitializeComponent();
             
         }
- 
+       
+        
         /// <summary>
         /// 
         /// </summary>
@@ -47,18 +50,18 @@ namespace Efectivo
             Button n = (Button)sender;
             Dinero dinero = (Dinero)n.DataContext;
             //ahora buscar
-            if (Nuevalista.Items.Contains(dinero))
+            if (dineros.Contains(dinero))
             {
-                int posicion = Nuevalista.Items.IndexOf(dinero);
-                Nuevalista.Items.Remove(dinero);
+                int posicion = dineros.IndexOf(dinero);
+                dineros.Remove(dinero);
                 dinero.Cantidad += 1 ;
-                Nuevalista.Items.Insert(posicion, dinero);
+                dineros.Insert(posicion, dinero);
                 Total += dinero.Valor;
                 TxtTotal.Text = Total.ToString();
             }
             else
             {
-                Nuevalista.Items.Add(dinero);
+                dineros.Add(dinero);
                 Total += dinero.Valor;
                 TxtTotal.Text = Total.ToString();
             }
