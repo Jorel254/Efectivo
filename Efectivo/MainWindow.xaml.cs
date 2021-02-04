@@ -23,22 +23,22 @@ namespace Efectivo
     /// </summary>
     public partial class MainWindow : Window
     {
-       public  Cartera Billetera { get; set; }
-     public ObservableCollection<Dinero> dineros { get; set; }
+        public Cartera Billetera { get; set; }
+        public ObservableCollection<Dinero> dineros { get; set; }
         int Total = 0;
         public MainWindow()
         {
             Billetera = new Cartera();
             dineros = new ObservableCollection<Dinero>();
-            Billetera.AgregarBilletes(new Billete("Cien", 100,1));
-            Billetera.AgregarBilletes(new Billete("Doscientos", 200,1));
-            Billetera.AgregarBilletes(new Billete("Veinte", 20,1));
-           
+            Billetera.AgregarBilletes(new Billete("Cien", 100, 1));
+            Billetera.AgregarBilletes(new Billete("Doscientos", 200, 1));
+            Billetera.AgregarBilletes(new Billete("Veinte", 20, 1));
+
             InitializeComponent();
-            
+
         }
-       
-        
+
+
         /// <summary>
         /// 
         /// </summary>
@@ -46,27 +46,41 @@ namespace Efectivo
         /// <param name="e"></param>
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            
+
             Button n = (Button)sender;
             Dinero dinero = (Dinero)n.DataContext;
             //ahora buscar
+            //if (dineros.Contains(dinero))
+            //{
+            //    int posicion = dineros.IndexOf(dinero);
+            //    dineros.Remove(dinero);
+            //    dinero.Cantidad += 1 ;
+            //    dineros.Insert(posicion, dinero);
+            //    Total += dinero.Valor;
+            //    TxtTotal.Text = Total.ToString();
+            //}
+            //else
+            //{
+            //    dineros.Add(dinero);
+            //    Total += dinero.Valor;
+            //    TxtTotal.Text = Total.ToString();
+            //}
+
+            
             if (dineros.Contains(dinero))
             {
-                int posicion = dineros.IndexOf(dinero);
-                dineros.Remove(dinero);
-                dinero.Cantidad += 1 ;
-                dineros.Insert(posicion, dinero);
-                Total += dinero.Valor;
-                TxtTotal.Text = Total.ToString();
+                //para que sacar y volver a meter si podemos incrementar la cantidad
+                //como cantidad tiene INotifyPropertyChanged la vista se mantiene actualizada en el listview
+                dinero.Cantidad++;
             }
             else
             {
                 dineros.Add(dinero);
-                Total += dinero.Valor;
-                TxtTotal.Text = Total.ToString();
             }
-            
 
+            //Revisar la nueva propiedad calculada "Total" que se agregó en dinero
+            //Calcular el todal y pasar el valor
+            TxtTotal.Text = dineros.Sum(d => d.Total).ToString();
         }
     }
 }
