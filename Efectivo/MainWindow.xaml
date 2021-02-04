@@ -9,10 +9,11 @@
         Title="MainWindow" Height="450" Width="800">
     <Grid>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition/>
-            <ColumnDefinition/>
+            <ColumnDefinition Width="4*"/>
+            <ColumnDefinition Width="5*"/>
+            <ColumnDefinition Width="9*"/>
         </Grid.ColumnDefinitions>
-        <Border Grid.Column="0" Margin="5" CornerRadius="10" Background="Gray">
+        <Border Grid.Column="0" Margin="5" CornerRadius="10" Background="Gray" Grid.ColumnSpan="2">
 
             <DockPanel >
                 <Grid DockPanel.Dock="Bottom">
@@ -40,7 +41,7 @@
             </DockPanel>
         </Border>
 
-        <ItemsControl Grid.Column="1" ItemsSource="{Binding Billetera.Monedero,ElementName=Me}">
+        <ItemsControl Grid.Column="2" ItemsSource="{Binding Billetera.Monedero,ElementName=Me}">
             <ItemsControl.ItemsPanel>
                 <ItemsPanelTemplate>
                     <UniformGrid Columns="2"/>
