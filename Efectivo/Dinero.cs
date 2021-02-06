@@ -11,6 +11,7 @@ namespace Efectivo
 {
     //Implementar INotifyPropertyChanged para mantener la cantidad actualizada siempre sin
     //tener que sacar y meter el elemento
+
     public abstract class Dinero : INotifyPropertyChanged
     {
         public enum TipoEfectivo { Moneda = 1, Billete = 2 }
