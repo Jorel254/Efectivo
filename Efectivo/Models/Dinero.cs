@@ -6,21 +6,30 @@ using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 using Efectivo.Annotations;
+using GoldenToolKit;
 
-namespace Efectivo
+namespace Efectivo.Models
 {
-    //Implementar INotifyPropertyChanged para mantener la cantidad actualizada siempre sin
-    //tener que sacar y meter el elemento
 
-    public abstract class Dinero : INotifyPropertyChanged
+    public abstract class Dinero : ModelBase
     {
         public enum TipoEfectivo { Moneda = 1, Billete = 2 }
-        public int Valor { get; set; }
+        public int Valor 
+        { 
+            get => valor;
+            set
+            {
+                valor = value;
+                OnPropertyChanged();
+            }
+        }
         public string Nombre { get; set; }
         public TipoEfectivo Tipo { get; set; }
 
 
         public int _Cantidad;
+        private int valor;
+
         public int Cantidad
         {
             get => _Cantidad;
@@ -39,23 +48,14 @@ namespace Efectivo
                 return Valor * Cantidad;
             }
         }
-
-        protected Dinero(string Nombre, int Valor, int Cantidad, TipoEfectivo Tipo)
+        public string Imagen { get; set; }
+        protected Dinero(string Nombre, int Valor, int Cantidad, TipoEfectivo Tipo, string Imagen)
         {
             this.Nombre = Nombre;
             this.Valor = Valor;
             this.Tipo = Tipo;
             this.Cantidad = Cantidad;
+            this.Imagen = Imagen;
         }
-
-        #region INotifyPropertyChanged
-        public event PropertyChangedEventHandler PropertyChanged;
-
-        [NotifyPropertyChangedInvocator]
-        protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
-        {
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
-        }
-        #endregion
     }
 }

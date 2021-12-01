@@ -5,6 +5,8 @@ VisualStudioVersion = 16.0.30804.86
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Efectivo", "Efectivo\Efectivo.csproj", "{0C653D2B-08B5-43A8-8EA8-68F3BE0D19C6}"
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GoldenToolKit", "..\..\Git\GoldenToolKit\GoldenToolKit\GoldenToolKit.csproj", "{D6E046E9-4A6D-48D0-BFCB-25C8294028F0}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +17,10 @@ Global
 		{0C653D2B-08B5-43A8-8EA8-68F3BE0D19C6}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{0C653D2B-08B5-43A8-8EA8-68F3BE0D19C6}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{0C653D2B-08B5-43A8-8EA8-68F3BE0D19C6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D6E046E9-4A6D-48D0-BFCB-25C8294028F0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D6E046E9-4A6D-48D0-BFCB-25C8294028F0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D6E046E9-4A6D-48D0-BFCB-25C8294028F0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D6E046E9-4A6D-48D0-BFCB-25C8294028F0}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

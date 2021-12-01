@@ -1,0 +1,127 @@
+﻿<Window x:Class="Efectivo.Views.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Efectivo"
+        xmlns:hc="https://handyorg.github.io/handycontrol" 
+        xmlns:vm="clr-namespace:Efectivo.ViewModels"
+        xmlns:models="clr-namespace:Efectivo.Models"
+        mc:Ignorable="d"
+         d:DataContext="{d:DesignInstance Type={x:Type vm:MainWindowViewModel},IsDesignTimeCreatable=True}"    
+        Height="450" Width="800"  Closing="Window_Closing" WindowStartupLocation="Manual" Left="50" Top="100">
+    <Window.DataContext>
+    <vm:MainWindowViewModel x:Name="Model"/>
+    </Window.DataContext>
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="8*"/>
+            <ColumnDefinition Width="10*"/>
+        </Grid.ColumnDefinitions>
+        <Border Grid.Column="0" CornerRadius="10" >
+            <DockPanel Margin="5">
+                <Grid  DockPanel.Dock="Top"  Margin="3" >
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="40"/>
+                    </Grid.ColumnDefinitions>
+                    <Label HorizontalAlignment="Stretch" Margin="3,0"  Background="WhiteSmoke">
+                        <TextBlock Text="Imagen" FontSize="14" FontWeight="Bold" />
+                    </Label>
+                    <Label Grid.Column="1" Margin="3,0"  HorizontalAlignment="Stretch"  FontSize="14" FontWeight="Bold"  Background="WhiteSmoke" >
+                        <TextBlock Text="Cantidad"/>
+                    </Label>
+                    <Label Grid.Column="2" Margin="3,0"  HorizontalAlignment="Stretch"    FontSize="14" FontWeight="Bold"  Background="WhiteSmoke">
+                        <TextBlock Text="Valor" />
+                    </Label>
+                </Grid>
+                <ScrollViewer>
+                    <ItemsControl  ItemsSource="{Binding Money}">
+                        <ItemsControl.Resources>
+                            <DataTemplate DataType="{x:Type models:Moneda}">
+                                <Grid >
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="40*"/>
+                                        <ColumnDefinition Width="40*"/>
+                                        <ColumnDefinition Width="40*"/>
+                                        <ColumnDefinition Width="40"/>
+                                    </Grid.ColumnDefinitions>
+                                    <Label  Margin="3,0"  HorizontalAlignment="Stretch"  Background="WhiteSmoke">
+                                        <Image Source="{Binding Imagen}" Stretch="Fill" Width="70" Height="50" Grid.Column="0" />
+                                    </Label>
+                                    <Label  Background="WhiteSmoke" Margin="3,0" Content="{Binding Cantidad}"  FontWeight="Bold" FontSize="20" Grid.Column="1"  Width="90" Height="60"  HorizontalAlignment="Stretch"/>
+                                    <Label  Background="WhiteSmoke"  Margin="3,0"  HorizontalAlignment="Stretch"   FontSize="14" FontWeight="Bold"  Grid.Column="2" Width="90" Height="60" >
+                                        <StackPanel Orientation="Horizontal"  HorizontalAlignment="Right">
+                                            <TextBlock Text="$"  FontWeight="Bold" FontSize="25" VerticalAlignment="Center"/>
+                                            <TextBlock Text="{Binding Valor}"   VerticalAlignment="Center"  FontWeight="Bold" FontSize="25" />
+                                        </StackPanel>
+                                    </Label>
+                                    <Button Grid.Column="3" Style="{StaticResource ButtonDanger}"  CommandParameter="{Binding .}" Command="{Binding DeleteMoney,ElementName=Model}">
+                                        <TextBlock Text="X" Foreground="White" FontWeight="Bold"/>
+                                    </Button>
+                                </Grid>
+                            </DataTemplate>
+                            <DataTemplate DataType="{x:Type models:Billete}">  
+                                <Grid >
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="40*"/>
+                                        <ColumnDefinition Width="40*"/>
+                                        <ColumnDefinition Width="40*"/>
+                                        <ColumnDefinition Width="40"/>
+                                    </Grid.ColumnDefinitions>
+                                    <Label  Margin="3,0"  HorizontalAlignment="Stretch"  Background="WhiteSmoke">
+                                        <Image Source="{Binding Imagen}" Stretch="Fill" Width="80" Height="50" Grid.Column="0" />
+                                    </Label>
+                                    <Label  Background="WhiteSmoke" Margin="3,0" Content="{Binding Cantidad}"  FontWeight="Bold" FontSize="20" Grid.Column="1"  Width="90" Height="60"  HorizontalAlignment="Stretch"/>
+                                    <Label  Background="WhiteSmoke"  Margin="3,0"  HorizontalAlignment="Stretch"   FontSize="14" FontWeight="Bold"  Grid.Column="2" Width="90" Height="60" >
+                                        <StackPanel Orientation="Horizontal"  HorizontalAlignment="Right">
+                                            <TextBlock Text="$"  FontWeight="Bold" FontSize="25" VerticalAlignment="Center"/>
+                                            <TextBlock Text="{Binding Valor}"   VerticalAlignment="Center"  FontWeight="Bold" FontSize="25" />
+                                        </StackPanel>
+                                    </Label>
+                                    <Button Grid.Column="3" Style="{StaticResource ButtonDanger}" CommandParameter="{Binding .}" Command="{Binding DeleteMoney,ElementName=Model}">
+                                        <TextBlock Text="X" Foreground="White" FontWeight="Bold"/>
+                                    </Button>
+                                </Grid>
+                            </DataTemplate>
+                        </ItemsControl.Resources>
+                    </ItemsControl>
+                </ScrollViewer>
+            </DockPanel>
+        </Border>
+        <Grid Grid.Column="1">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="70"/>
+            </Grid.RowDefinitions>
+            <StackPanel >
+                <Label  Content="{Binding IDBoleto}" VerticalAlignment="Top" VerticalContentAlignment="Center" FontSize="20" FontWeight="Bold" Background="#D5E8D4" Margin="10" Visibility="{Binding LabelVi}"  Grid.ColumnSpan="2"/>
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="auto"/>
+                    </Grid.ColumnDefinitions>
+                    <Label  Content="{Binding Hora}" VerticalAlignment="Top" VerticalContentAlignment="Center" FontSize="20" FontWeight="Bold" Background="#D5E8D4" Margin="10" Visibility="{Binding LabelVi}" Grid.ColumnSpan="2" Grid.Row="0" Grid.Column="0"/>
+                    <Label Grid.Row="1" Grid.Column="0" Content="Total:" FontWeight="Bold" FontSize="30" HorizontalAlignment="Left" Style="{StaticResource BaseStyle}" Visibility="{Binding LabelVi}" />
+                    <Label Grid.Row="1" Grid.Column="1" Content="{Binding Cambio}" FontWeight="Bold" FontSize="33" Width="100" Height="60" HorizontalAlignment="Right" Visibility="{Binding LabelVi}"/>
+                    <Label Grid.Row="2" Grid.Column="0" Content="Dinero insertado:" FontWeight="Bold" FontSize="25" HorizontalAlignment="Left" Style="{StaticResource BaseStyle}" Visibility="{Binding LabelVi}" />
+                    <Label  Grid.Row="2" Grid.Column="1" Content="{Binding TotalIngresado}" FontWeight="Bold" FontSize="33" Width="100" Height="60" HorizontalAlignment="Right" Visibility="{Binding LabelVi}"/>
+                    <Label Grid.Row="3" Grid.Column="0"  Content="Cambio:" FontWeight="Bold" FontSize="25" HorizontalAlignment="Left" Style="{StaticResource BaseStyle}" Visibility="{Binding LabelVi}" />
+                    <Label  Grid.Row="3" Grid.Column="1" Content="{Binding Cambio}" FontWeight="Bold" FontSize="33" Width="100" Height="60" HorizontalAlignment="Right" Visibility="{Binding LabelVi}"/>
+                </Grid>
+            </StackPanel>
+            <DockPanel Grid.Row="1" LastChildFill="False">
+                <Button Content="Buscar boleto" FontWeight="Bold" FontSize="15" Height="50" DockPanel.Dock="Left" Margin="5" Style="{StaticResource ButtonPrimary}" />
+                <Button Content="Pagar Boleto" Style="{StaticResource ButtonSuccess}" FontWeight="Bold" FontSize="20" Height="60" DockPanel.Dock="Right" Margin="5"/>
+            </DockPanel>
+        </Grid>
+    </Grid>
+</Window>
