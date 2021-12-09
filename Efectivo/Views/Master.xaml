@@ -1,0 +1,19 @@
+﻿<Window x:Class="Efectivo.Views.Master"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Efectivo"
+        xmlns:hc="https://handyorg.github.io/handycontrol" 
+        xmlns:vm="clr-namespace:Efectivo.ViewModels"
+        xmlns:models="clr-namespace:Efectivo.Models"
+        mc:Ignorable="d"
+        d:DataContext="{d:DesignInstance Type={x:Type vm:MainWindowViewModel},IsDesignTimeCreatable=True}" 
+        Height="450" Width="800"  Closing="Window_Closing" WindowStartupLocation="Manual" Left="50" Top="100">
+    <Window.DataContext>
+        <vm:MainWindowViewModel x:Name="Model"/>
+    </Window.DataContext>
+    <Grid>
+        <ContentControl x:Name="Contenido" />
+    </Grid>
+</Window>

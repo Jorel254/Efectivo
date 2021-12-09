@@ -1,10 +1,5 @@
 ﻿using Efectivo.Models;
 using GoldenToolKit;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Input;
 
 namespace Efectivo.ViewModels
@@ -12,7 +7,7 @@ namespace Efectivo.ViewModels
     public class PrincipalPageViewModel : ModelBase
     {
         public Cartera Billetera { get; set; }
-        public MainWindowViewModel ViewModel { get; set; }
+        public PaymentWindowViewModel ViewModel { get; set; }
         public ICommand GenerateCommand { get; set; }
         public PrincipalPageViewModel()
         {

@@ -22,19 +22,25 @@ namespace Efectivo.Views
     /// <summary>
     /// Lógica de interacción para MainWindow.xaml
     /// </summary>
-    public partial class MainWindow : Window
+    public partial class Master : Window
     {
-        private readonly PrincipalPage principal;
-        public MainWindow()
+        public PrincipalPage principal { get; set; }
+        public Master()
         {
-            InitializeComponent();
+            App.MainWindow = this;
             principal = new PrincipalPage();
-            principal.Model2.ViewModel = this.Model;
+            InitializeComponent();
+            Navegar(this.Model.First);
+            principal.Model2.ViewModel = this.Model.First.Model;
             principal.Show();
         }
         private void Window_Closing(object sender, CancelEventArgs e)
         {
             principal.Close();
+        }
+        public void Navegar(UserControl contenido)
+        {
+            this.Contenido.Content = contenido;
         }
     }
 }
