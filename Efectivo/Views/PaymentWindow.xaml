@@ -57,7 +57,7 @@
                                             <TextBlock Text="{Binding Valor}"   VerticalAlignment="Center"  FontWeight="Bold" FontSize="25" />
                                         </StackPanel>
                                     </Label>
-                                    <Button Grid.Column="3" Style="{StaticResource ButtonDanger}"  CommandParameter="{Binding .}" Command="{Binding DeleteMoney}">
+                                    <Button Grid.Column="3" Style="{StaticResource ButtonDanger}"  CommandParameter="{Binding .}" Command="{Binding Model.DeleteMoney,ElementName=Me}">
                                         <TextBlock Text="X" Foreground="White" FontWeight="Bold"/>
                                     </Button>
                                 </Grid>
@@ -80,7 +80,8 @@
                                             <TextBlock Text="{Binding Valor}"   VerticalAlignment="Center"  FontWeight="Bold" FontSize="25" />
                                         </StackPanel>
                                     </Label>
-                                            <Button Grid.Column="3" Style="{StaticResource ButtonDanger}" CommandParameter="{Binding .}" Command="{Binding DeleteMoney}">
+                                            <Button Grid.Column="3" Style="{StaticResource ButtonDanger}" CommandParameter="{Binding .}" 
+                                                    Command="{Binding Model.DeleteMoney,ElementName=Me}">
                                         <TextBlock Text="X" Foreground="White" FontWeight="Bold"/>
                                     </Button>
                                 </Grid>

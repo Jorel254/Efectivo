@@ -16,7 +16,6 @@ namespace Efectivo.ViewModels
         private string labelVi;
 
         public ObservableCollection<Dinero> Money { get; set; }
-        public MainWindowViewModel Instance { get; set; }
         public string TotalIngresado
         {
             get => totalIngresado;
@@ -76,11 +75,6 @@ namespace Efectivo.ViewModels
         public ICommand SearchCommand { get; set; }
         public PaymentWindowViewModel()
         {
-
-        }
-        public PaymentWindowViewModel(MainWindowViewModel model)
-        {
-            Instance = model;
             this.Money = new ObservableCollection<Dinero>();
             LabelVi = IVisibilityEnum.GetString(VisibilityLevel.Hidden);
             DeleteMoney = new Command<Dinero>(Delete);
@@ -120,8 +114,8 @@ namespace Efectivo.ViewModels
         }
         public void SearchTicket(object obj)
         {
-            App.MainWindow.Navegar(Instance.Second);
-        }
+            MasterControl.Current.Navegar<SearchPage>();
 
+        }
     }
 }

@@ -1,4 +1,5 @@
 ﻿using Efectivo.ViewModels;
+using GoldenToolKit.Interfaces;
 using System.Windows.Controls;
 
 namespace Efectivo.Views
@@ -6,14 +7,29 @@ namespace Efectivo.Views
     /// <summary>
     /// Interaction logic for PaymentWindow.xaml
     /// </summary>
-    public partial class PaymentWindow : UserControl
+    public partial class PaymentWindow : UserControl,IUserControlInterface
     {
         public PaymentWindowViewModel Model { get; set; }
-        public PaymentWindow(MainWindowViewModel model)
+        public PaymentWindow()
         {
-            Model = new PaymentWindowViewModel(model);
+            Model = new PaymentWindowViewModel();
             DataContext = Model;
             InitializeComponent();
+        }
+
+        public void OnHidden()
+        {
+            //:)
+        }
+
+        public void OnShown()
+        {
+            //:)
+        }
+
+        public void OnMessageReceived(string json)
+        {
+            //:)
         }
     }
 }

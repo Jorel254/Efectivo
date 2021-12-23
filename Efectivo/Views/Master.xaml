@@ -8,12 +8,20 @@
         xmlns:vm="clr-namespace:Efectivo.ViewModels"
         xmlns:models="clr-namespace:Efectivo.Models"
         mc:Ignorable="d"
-        d:DataContext="{d:DesignInstance Type={x:Type vm:MainWindowViewModel},IsDesignTimeCreatable=True}" 
         Height="450" Width="800"  Closing="Window_Closing" WindowStartupLocation="Manual" Left="50" Top="100">
-    <Window.DataContext>
-        <vm:MainWindowViewModel x:Name="Model"/>
-    </Window.DataContext>
     <Grid>
-        <ContentControl x:Name="Contenido" />
+        <Grid.RowDefinitions>
+            <RowDefinition Height="30"/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
+            <Button Style="{StaticResource ButtonInfo}" Height="40" HorizontalAlignment="Left" Width="30" x:Name="Back" Click="Back_Click" BorderBrush="Black" BorderThickness="1">
+                <TextBlock Text="&#xab;" FontSize="25" FontWeight="DemiBold"/>
+            </Button>
+            <Button Style="{StaticResource ButtonInfo}" Height="40" HorizontalAlignment="Left" Width="30" x:Name="Forward" Click="Forward_Click" BorderBrush="Black" BorderThickness="1">
+                <TextBlock Text="&#xbb;" FontSize="25" FontWeight="DemiBold"/>
+            </Button>
+        </StackPanel>
+        <local:MasterControl x:Name="Navigation" Grid.Row="1"/>
     </Grid>
 </Window>

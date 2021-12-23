@@ -1,4 +1,5 @@
 ﻿using Efectivo.ViewModels;
+using GoldenToolKit.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -30,17 +31,24 @@ namespace Efectivo.Views
             App.MainWindow = this;
             principal = new PrincipalPage();
             InitializeComponent();
-            Navegar(this.Model.First);
-            principal.Model2.ViewModel = this.Model.First.Model;
+            this.Navigation.Navegar(new PaymentWindow());
+            IUserControlInterface actual = this.Navigation.GetCurrentControl();
+            principal.Model2.ViewModel = ((PaymentWindow)actual).Model;
             principal.Show();
         }
         private void Window_Closing(object sender, CancelEventArgs e)
         {
             principal.Close();
         }
-        public void Navegar(UserControl contenido)
+
+        private void Back_Click(object sender, RoutedEventArgs e)
         {
-            this.Contenido.Content = contenido;
+            this.Navigation.Navegar(this.Navigation.GoBack());
+        }
+
+        private void Forward_Click(object sender, RoutedEventArgs e)
+        {
+            this.Navigation.Navegar(this.Navigation.GoFoward());
         }
     }
 }
