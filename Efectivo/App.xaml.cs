@@ -16,7 +16,7 @@ namespace Efectivo
     public partial class App : Application
     {
         public static new Master MainWindow { get; set; }
-        protected override void OnStartup(StartupEventArgs e)
+        protected override async void OnStartup(StartupEventArgs e)
         {
             base.OnStartup(e);
         }

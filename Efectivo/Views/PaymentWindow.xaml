@@ -109,9 +109,12 @@
                         <ColumnDefinition Width="*"/>
                         <ColumnDefinition Width="auto"/>
                     </Grid.ColumnDefinitions>
-                    <Label  Content="{Binding Hora}" VerticalAlignment="Top" VerticalContentAlignment="Center" FontSize="20" FontWeight="Bold" Background="#D5E8D4" Margin="10" Visibility="{Binding LabelVi}" Grid.ColumnSpan="2" Grid.Row="0" Grid.Column="0"/>
+                    <StackPanel Grid.ColumnSpan="2" Grid.Row="0" Grid.Column="0" Orientation="Horizontal" HorizontalAlignment="Center" Margin="10" >
+                        <Label  Content="{Binding Hora}" VerticalAlignment="Top" VerticalContentAlignment="Center" FontSize="15" FontWeight="Bold" Background="#D5E8D4"  Visibility="{Binding LabelVi}" Margin="5,0"/>
+                        <Label  Content="{Binding HoraSalida}" VerticalAlignment="Top" VerticalContentAlignment="Center" FontSize="15" FontWeight="Bold" Background="#D8E4EC"  Visibility="{Binding LabelVi}" />
+                    </StackPanel>
                     <Label Grid.Row="1" Grid.Column="0" Content="Total:" FontWeight="Bold" FontSize="30" HorizontalAlignment="Left" Style="{StaticResource BaseStyle}" Visibility="{Binding LabelVi}" />
-                    <Label Grid.Row="1" Grid.Column="1" Content="{Binding Cambio}" FontWeight="Bold" FontSize="33" Width="100" Height="60" HorizontalAlignment="Right" Visibility="{Binding LabelVi}"/>
+                    <Label Grid.Row="1" Grid.Column="1" Content="{Binding TotalBoleto}" FontWeight="Bold" FontSize="33" Width="100" Height="60" HorizontalAlignment="Right" Visibility="{Binding LabelVi}"/>
                     <Label Grid.Row="2" Grid.Column="0" Content="Dinero insertado:" FontWeight="Bold" FontSize="25" HorizontalAlignment="Left" Style="{StaticResource BaseStyle}" Visibility="{Binding LabelVi}" />
                     <Label  Grid.Row="2" Grid.Column="1" Content="{Binding TotalIngresado}" FontWeight="Bold" FontSize="33" Width="100" Height="60" HorizontalAlignment="Right" Visibility="{Binding LabelVi}"/>
                     <Label Grid.Row="3" Grid.Column="0"  Content="Cambio:" FontWeight="Bold" FontSize="25" HorizontalAlignment="Left" Style="{StaticResource BaseStyle}" Visibility="{Binding LabelVi}" />
@@ -120,7 +123,7 @@
             </StackPanel>
             <DockPanel Grid.Row="1" LastChildFill="False">
                 <Button Content="Buscar boleto" FontWeight="Bold" FontSize="15" Height="50" DockPanel.Dock="Left" Margin="5" Style="{StaticResource ButtonPrimary}" Command="{Binding SearchCommand}" />
-                <Button Content="Pagar Boleto" Style="{StaticResource ButtonSuccess}" FontWeight="Bold" FontSize="20" Height="60" DockPanel.Dock="Right" Margin="5"/>
+                <Button Content="Pagar Boleto" Style="{StaticResource ButtonSuccess}" FontWeight="Bold" FontSize="20" Height="60" DockPanel.Dock="Right" Margin="5" Command="{Binding PayCommand}"/>
             </DockPanel>
         </Grid>
     </Grid>

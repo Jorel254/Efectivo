@@ -8,15 +8,16 @@ using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 using System.Windows.Input;
 
 namespace Efectivo.ViewModels
 {
     public class SearchPageViewModel : ModelBase, IUserControlInterface
     {
-        List<string> items;
+        List<string> Items;
         private string iD;
-        public string ID 
+        public string ID
         { 
             get => iD;
             set
@@ -31,7 +32,7 @@ namespace Efectivo.ViewModels
         public SearchPageViewModel()
         {
           
-            items = new List<string>();
+            Items = new List<string>();
             FindTicketCommand = new Command(FindTicket);
         }
 
@@ -39,15 +40,25 @@ namespace Efectivo.ViewModels
         {
             SQLConnect sQLConnect = new SQLConnect();
             sQLConnect.ConnectionDB("Proyectos", ".");
-            items.AddRange(sQLConnect.Read(sQLConnect.Connection, "SP_SEARCHTICKET", new SqlParameter("@ID", ID)));
-            DateTime time;
-            DateTime.TryParse(items[2], out time);
-            client = new ClientModel(Guid.Parse(items[0]), DateTime.Parse(items[1]), Convert.ToInt32(items[3]),time);
-            //instance.First.Model.AsignedClient(client);
-            var instance = MasterControl.Current.GoBack();
-            var PayModel = ((PaymentWindow)instance).Model;
-            PayModel.AsignedClient(client);
-            items.Clear();
+            Items.AddRange(sQLConnect.Read(sQLConnect.Connection, "SP_SEARCHTICKET", new SqlParameter("@ID", ID)));
+            if (Items.Count <= 0)
+            {
+                MessageBox.Show("Boleto no encontrado","Alerta",MessageBoxButton.OK);
+                Items.Clear();
+                ID = "";
+            }
+            else
+            {
+                DateTime time;
+                DateTime.TryParse(Items[2], out time);
+                client = new ClientModel(Guid.Parse(Items[0]), DateTime.Parse(Items[1]), Convert.ToInt32(Items[3]), time);
+                var instance = MasterControl.Current.GoBack();
+                var PayModel = ((PaymentWindow)instance).Model;
+                PayModel.AsignedClient(client);
+                Items.Clear();
+                MasterControl.Current.Navegar<PaymentWindow>();
+            }
+            
         }
 
         public void OnHidden()
@@ -61,6 +72,11 @@ namespace Efectivo.ViewModels
         }
 
         public void OnMessageReceived(string json)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void OnMessageReceived(object obj)
         {
             throw new NotImplementedException();
         }

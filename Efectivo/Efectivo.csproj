@@ -74,13 +74,12 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="Enums\IVisibilityEnum.cs" />
     <Compile Include="MasterControl.cs" />
     <Compile Include="Models\ClientModel.cs" />
+    <Compile Include="Models\Machine.cs" />
     <Compile Include="ViewModels\PaymentWindowViewModel.cs" />
     <Compile Include="ViewModels\PrincipalPageViewModel.cs" />
     <Compile Include="ViewModels\SearchPageViewModel.cs" />
-    <Compile Include="ViewModels\TicketMachinePageViewModel.cs" />
     <Compile Include="Views\PaymentWindow.xaml.cs">
       <DependentUpon>PaymentWindow.xaml</DependentUpon>
     </Compile>
@@ -89,9 +88,6 @@
     </Compile>
     <Compile Include="Views\SearchPage.xaml.cs">
       <DependentUpon>SearchPage.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Views\TicketMachinePage.xaml.cs">
-      <DependentUpon>TicketMachinePage.xaml</DependentUpon>
     </Compile>
     <Page Include="Views\Master.xaml">
       <Generator>MSBuild:Compile</Generator>
@@ -117,10 +113,6 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\SearchPage.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Views\TicketMachinePage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

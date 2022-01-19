@@ -7,7 +7,7 @@ namespace Efectivo.Views
     /// <summary>
     /// Interaction logic for PaymentWindow.xaml
     /// </summary>
-    public partial class PaymentWindow : UserControl,IUserControlInterface
+    public partial class PaymentWindow : UserControl, IUserControlInterface
     {
         public PaymentWindowViewModel Model { get; set; }
         public PaymentWindow()
@@ -30,6 +30,11 @@ namespace Efectivo.Views
         public void OnMessageReceived(string json)
         {
             //:)
+        }
+
+        public void OnMessageReceived(object obj)
+        {
+            throw new System.NotImplementedException();
         }
     }
 }

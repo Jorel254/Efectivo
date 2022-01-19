@@ -34,5 +34,10 @@ namespace Efectivo.Views
         {
            
         }
+
+        public void OnMessageReceived(object obj)
+        {
+            throw new System.NotImplementedException();
+        }
     }
 }

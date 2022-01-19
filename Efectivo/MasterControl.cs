@@ -1,6 +1,7 @@
 ﻿using GoldenToolKit.Interfaces;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 using System.Windows.Controls;
 
@@ -13,53 +14,53 @@ namespace Efectivo
         Dictionary<string, IUserControlInterface> ControlInterfaces { get; set; }
         public IUserControlInterface Actual { get; set; }
         public List<string> ControlViews { get; set; }
+        public int PageNumber { get; set; }
+        public int ActualPage { get; set; }
 
         public IUserControlInterface GoBack()
         {
-            int indice = ControlViews.FindIndex(p => p == Actual.GetType().Name);
-            if (indice == 0 )
+            if (ActualPage == 0)
             {
                 
-            }else
-            {
-                
-                if (ControlInterfaces.TryGetValue(ControlViews[indice - 1], out IUserControlInterface value))
-                {
-                    Actual = value;
-                    return Actual;
-                }
             }
-           
+            else
+            {
+                Actual = ControlInterfaces.Values.ElementAt(ActualPage - 1);
+                ActualPage -= 1;
+                return Actual;
+                
+            }
+
             return Actual;
         }
 
         public IUserControlInterface GoFoward()
         {
+            if (ActualPage + 1 > ControlInterfaces.Count - 1 )
+            {
 
-            int indice = ControlViews.FindIndex(p => p == Actual.GetType().Name);
-            
-                if (!(indice > ControlViews.Count))
-                {
-                    if (ControlInterfaces.TryGetValue(ControlViews[indice + 1], out IUserControlInterface value))
-                    {
-                        Actual = value;
-                        return Actual;
-                    }
-                }
-               
-            
+            }
+            else
+            {
+
+                Actual = ControlInterfaces.Values.ElementAt(ActualPage + 1);
+                ActualPage += 1;
+                return Actual;
+            }
 
             return Actual;
         }
         public void Navegar(IUserControlInterface usercontrol)
         {
-           
+
             this.Content = usercontrol;
             var temp = usercontrol.GetType();
-            if (!ControlInterfaces.ContainsKey(temp.Name))
+            if (!ControlInterfaces.ContainsKey(temp.FullName))
             {
-                ControlViews.Add(temp.Name);
-                ControlInterfaces.Add(temp.Name,usercontrol);
+                ControlViews.Add(temp.FullName);
+                ControlInterfaces.Add(temp.FullName, usercontrol);
+                PageNumber += 1;
+                ActualPage = PageNumber - 1;
             }
             Actual = usercontrol;
             usercontrol.OnShown();
@@ -70,6 +71,12 @@ namespace Efectivo
             control.OnMessageReceived(json);
         }
 
+        public void SendMessage<T>(object obj) where T : IUserControlInterface
+        {
+            //Encontrar la ventana del tipo T y enviarle el mensajito
+            //si no esta arroja una excepcion
+            throw new NotImplementedException();
+        }
         public void SendMessage<T>(string json) where T : IUserControlInterface
         {
             //Encontrar la ventana del tipo T y enviarle el mensajito
@@ -79,23 +86,27 @@ namespace Efectivo
 
         public void Navegar<T>(object parameter = null) where T : IUserControlInterface
         {
-            T controltemp = (T)Activator.CreateInstance(typeof(T));
-            var temp = controltemp.GetType();
-            if (ControlInterfaces.TryGetValue(temp.Name, out IUserControlInterface value))
+           
+            var temp = typeof(T);// controltemp.GetType();
+            if (ControlInterfaces.TryGetValue(temp.FullName, out IUserControlInterface value))
             {
-               
                 Content = value;
                 Actual = value;
+                ActualPage = PageNumber - 1;
                 value.OnShown();
-            }else
+            }
+            else
             {
-                ControlViews.Add(temp.Name);
-                ControlInterfaces.Add(temp.Name,controltemp);
+                T controltemp = (T)Activator.CreateInstance(temp);
+                ControlViews.Add(temp.FullName);
+                ControlInterfaces.Add(temp.FullName, controltemp);
                 Content = controltemp;
                 Actual = controltemp;
+                PageNumber += 1;
+                ActualPage = PageNumber - 1;
                 controltemp.OnShown();
             }
-            
+
         }
 
         public IUserControlInterface GetCurrentControl()

@@ -22,6 +22,8 @@ namespace Efectivo.ViewModels
             if (ViewModel.ConetinsMoney(dinero))
             {
                 dinero.Cantidad++;
+                ViewModel.Cash += dinero.Valor;
+                ViewModel.TotalIngresado = ViewModel.Cash.ToString();
             }
             else
             {
